@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="mysql-connector-java-5.1.35.jar" />
+
+	<context id="Mysql" targetRuntime="MyBatis3">
+		<plugin type="com.bing.frame.mybatis.plugin.CreateTimePlugin">
+			<property name="columnName" value="create_time" />
+		</plugin>
+		<plugin type="com.bing.frame.mybatis.plugin.UpdateTimePlugin">
+			<property name="columnName" value="update_time" />
+		</plugin>
+		<plugin type="com.bing.frame.mybatis.plugin.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/thirdparty" userId="root"
+			password="123456">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.bing.module.user.model"
+			targetProject="${targetProject}" />
+		<sqlMapGenerator targetPackage="com.bing.module.user.mapper"
+			targetProject="${targetProject}" />
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.bing.module.user.dao" targetProject="${targetProject}" />
+
+
+
+		<!-- 下面开始是具体要生成的内容 -->
+		<table schema="test" tableName="test" domainObjectName="Test">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+	</context>
+</generatorConfiguration>
